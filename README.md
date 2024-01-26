@@ -1,9 +1,10 @@
-# Chat Web E App
+# Chat Web and App
 
- Projeto de chat online, caso inicie em seu computador e abra uma guia anonima com o mesmo link pode testar a conversa entre duas pessoas.
+Online chat project, if you start it on your computer and open an anonymous tab with the same link, you can test the conversation between two people.
 
- Passo a passo escrito dentro do arquivo "main.py" junto ao codigo principal.
+ Step by step written inside the "main.py" file next to the main code.
 
- Troque no final do codigo ( ft.app(main, view=ft.WEB_BROWSER) ) por ( ft.app(main) ) para transformar o chat web em app.
+ Change the end of the code ( ft.app(main, view=ft.WEB_BROWSER) ) to ( ft.app(main) ) to transform the web chat into an app.
+
 
 
