@@ -1,98 +1,100 @@
-# Frontend -> usuario ve/interage
-# Backend -> Logica por tras do site
+# Project preview
 
-# pip install flet - para apps e webs
+# Frontend -> user sees/interacts
+# Backend -> Logic behind the website
 
-# Titulo ChatOnline
+# pip install flet - for apps and webs
 
-# Botao de inicar o chat
-    #popup 
-        # Bem vindo ao chat
-        # Escreva seu nome
-        # Entrar no chat
+# Title ChatOnline
+
+# Start chat button
+    #popup
+        # Welcome to the chat
+        # Write your name
+        # Join chat
 
 
-# Chat 
-    # Gabriel entrou no chat
-    # Mensagens do usuario
-# Campo para digitar msg
-# Botao de enviar
+# Chat
+    # Gabriel joined the chat
+    # User messages
+# Field to enter message
+# Send button
 
 import flet as ft
 
-def main(pagina):
-    texto = ft.Text('Chat Online') 
+def main(page):
+    text = ft.Text('Online Chat') 
 
 
-    nome_usuario = ft.TextField(label='Escreva seu nome')
+    username = ft.TextField(label='Write your name')
 
     chat = ft.Column()
 
-    def enviar_mensagem_tunel(informacoes):
-        chat.controls.append(ft.Text(informacoes))
-        pagina.update()
+    def send_message_tunel(information):
+        chat.controls.append(ft.Text(information))
+        page.update()
         
 
-    pagina.pubsub.subscribe(enviar_mensagem_tunel)
+    page.pubsub.subscribe(send_message_tunel)
 
 
-    def enviar_mensagem(evento):
-        # Colocar o nome do usuario na mensagem
-        texto_campo_mensagem = f'{nome_usuario.value}: {campo_mensagem.value}'        
+    def send_message(event):
+        # Put the user's name in the message
+        message_field_text = f'{username.value}: {message_field.value}'        
 
 
-        pagina.pubsub.send_all(texto_campo_mensagem)
-        # Limpar o campo mensagem
-        campo_mensagem.value = ''
+        page.pubsub.send_all(message_field_text)
+        # Clear the message field
+        message_field.value = ''
 
-        pagina.update()
+        page.update()
 
-    campo_mensagem = ft.TextField(label='Escreva sua mensagem aqui', on_submit=enviar_mensagem)
+    message_field = ft.TextField(label='Write your message here', on_submit=send_message)
 
-    botao_enviar = ft.ElevatedButton('Enviar', on_click=enviar_mensagem)
+    send_button = ft.ElevatedButton('Enviar', on_click=send_message)
 
 
-    def entrar_chat(evento):
-        # feche o popup
+    def enter_chat(event):
+        # close the popup
         popup.open = False
 
-        # Tire o botao iniciar chat da tela
-        pagina.remove(botao_inicar)
-        # Adicionar o CHAT
-        pagina.add(chat)
-        # criar o campo de enviar mensagem
-        linha_mensagem = ft.Row(
-            [campo_mensagem, botao_enviar]
+        # Remove the start chat button from the screen
+        page.remove(start_button)
+        # Add CHAT
+        page.add(chat)
+        #create the send message field
+        message_line = ft.Row(
+            [message_field, send_button]
         )
-        pagina.add(linha_mensagem)
-        # botao de enviar mensagem
+        page.add(message_line)
+        # send message button
 
-        texto = f'{nome_usuario.value} entrou no chat!'
-        pagina.pubsub.send_all(texto)
-        pagina.update()
+        text = f'{username.value} enter the chat!'
+        page.pubsub.send_all(text)
+        page.update()
 
 
     popup = ft.AlertDialog(
 
         open = False,
         modal = True,
-        title = ft.Text('Bem vindo ao Chat Online'),
-        content =  nome_usuario,
-        actions = [ft.ElevatedButton('Entrar', on_click=entrar_chat)]
+        title = ft.Text('Welcome to the Online Chat'),
+        content =  username,
+        actions = [ft.ElevatedButton('Entrar', on_click=enter_chat)]
     )
 
 
-    def iniciar_chat(evento):   # sempre um evento no on_click
-        pagina.dialog = popup
+    def start_chat(event):   # always an on_click event
+        page.dialog = popup
         popup.open = True
-        pagina.update()
+        page.update()
 
-    botao_inicar = ft.ElevatedButton('Iniciar Chat', on_click= iniciar_chat)
+    start_button = ft.ElevatedButton('Start Chat', on_click= start_chat)
 
 
 
-    pagina.add(texto)
-    pagina.add(botao_inicar)
+    page.add(text)
+    page.add(start_button)
 
 
 # ft.app(main)
